@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using Api.CrossCutting.DependencyInjection;
 using Api.Domain.Security;
@@ -67,6 +68,22 @@ namespace application
                     Version = "v1",
                     Title = "Projeto Teste DDD + Core 3.1",
                 });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Add Token",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement{{
+                    new OpenApiSecurityScheme{
+                        Reference = new OpenApiReference{
+                            Id="Bearer",
+                            Type=ReferenceType.SecurityScheme
+                        }
+                    }, new List<string>()
+                }});
             });
         }
 
