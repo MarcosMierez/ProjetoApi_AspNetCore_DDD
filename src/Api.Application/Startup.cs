@@ -96,6 +96,7 @@ namespace application
                 {
                     Description = "ADD Token",
                     Name = "Authorization",
+                    In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
 

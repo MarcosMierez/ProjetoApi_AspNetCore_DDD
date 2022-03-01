@@ -88,6 +88,16 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
+/Api.Application/bin
+/Api.Application/obj
+/Api.CrossCutting/bin
+/Api.CrossCutting/obj
+/Api.Data/bin
+/Api.Data/obj
+/Api.Domain/bin
+/Api.Domain/obj
+/Api.Service/bin
+/Api.Service/obj
 
 # Visual Studio profiler
 *.psess
