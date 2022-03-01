@@ -14,7 +14,6 @@ namespace Api.CrossCutting.DependencyInjection
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
-
             serviceCollection.AddDbContext<MyContext>(
                 options => options.UseSqlServer("Server=localhost;Database=Api;User Id=sa;Password=92628861a;")
             );

@@ -8,5 +8,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
   </ItemGroup>
 
-
 </Project>
