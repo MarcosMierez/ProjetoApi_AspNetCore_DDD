@@ -70,7 +70,7 @@ namespace Api.Data.Repository
         {
             try
             {
-                return await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
+                return await _dataset.FirstOrDefaultAsync(p => p.Id.Equals(id));
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace Api.Data.Repository
         {
             try
             {
-                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(item.Id));
+                var result = await _dataset.SingleOrDefaultAsync(p => p.Id == item.Id);
                 if (result == null)
                 {
                     return null;

@@ -1,3 +1,4 @@
+using System;
 using Api.Data.Context;
 using Api.Data.Implementations;
 using Api.Data.Repository;
@@ -14,6 +15,13 @@ namespace Api.CrossCutting.DependencyInjection
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
+
+            if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "sqlServer".ToLower())
+            {
+                serviceCollection.AddDbContext<MyContext>(
+                options => options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+            );
+            }
             serviceCollection.AddDbContext<MyContext>(
                 options => options.UseSqlServer("Server=localhost;Database=Api;User Id=sa;Password=92628861a;")
             );
