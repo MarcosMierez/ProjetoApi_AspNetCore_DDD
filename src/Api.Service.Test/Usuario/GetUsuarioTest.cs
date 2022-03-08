@@ -41,5 +41,48 @@ namespace Api.Service.Test.Usuario
             Assert.NotNull(result);
             Assert.True(result.Any());
         }
+
+        [Fact(DisplayName = "Sucesso metodo Post")]
+        public async Task Post_MetodoPost_TestandoPost()
+        {
+            _serviceMock.Setup(m => m.Post(userDtoCreate)).ReturnsAsync(userDtoCreateResult);
+            _service = _serviceMock.Object;
+
+            var result = await _service.Post(userDtoCreate);
+
+            Assert.NotNull(result);
+            Assert.Equal(NomeUsuario, result.Name);
+            Assert.Equal(NomeUsuario, result.Email);
+        }
+
+        [Fact(DisplayName = "Sucesso metodo Put")]
+        public async Task Put_MetodoPut_TestandoPut()
+        {
+            _serviceMock.Setup(m => m.Post(userDtoCreate)).ReturnsAsync(userDtoCreateResult);
+            _service = _serviceMock.Object;
+            var result = await _service.Post(userDtoCreate);
+
+
+            _serviceMock.Setup(m => m.Put(userDtoUpdate)).ReturnsAsync(userDtoUpdateResult);
+            _service = _serviceMock.Object;
+
+            var resultUpdate = await _service.Put(userDtoUpdate);
+
+            Assert.NotNull(resultUpdate);
+            Assert.Equal(NomeUsuarioAlterado, resultUpdate.Name);
+            Assert.Equal(EmailUsuarioAlterado, resultUpdate.Email);
+        }
+
+        [Fact(DisplayName = "Sucesso metodo Delete")]
+        public async Task Delete_MetodoDelete_TestandoDelete()
+        {
+            _serviceMock.Setup(m => m.Delete(It.IsAny<Guid>())).ReturnsAsync(true);
+            _service = _serviceMock.Object;
+            var delete = await _service.Delete(IdUsuario);
+
+            Assert.True(delete);
+        }
+
+
     }
 }
